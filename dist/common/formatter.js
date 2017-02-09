@@ -21,7 +21,8 @@ var defaults = {
 var inptRegs = {
   '9': /[0-9]/,
   'a': /[A-Za-z]/,
-  '*': /[A-Za-z0-9]/
+  '*': /[A-Za-z0-9]/,
+  '?': /[0-9\s]/
 };
 
 //
@@ -223,14 +224,16 @@ Formatter.prototype._processKey = function (chars, delKey, ignoreCaret) {
   // Get current state
   this.sel = inptSel.get(this.el);
   this.val = this.el.value;
-
+  console.log(this.sel);
   // Init values
   this.delta = 0;
 
   // If chars were highlighted, we need to remove them
   if (this.sel.begin !== this.sel.end) {
+    consle.log('before: ' + this.val);
     this.delta = (-1) * Math.abs(this.sel.begin - this.sel.end);
     this.val   = utils.removeChars(this.val, this.sel.begin, this.sel.end);
+    consle.log('after: ' + this.val);
   }
 
   // Delete key (moves opposite direction)

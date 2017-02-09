@@ -53,6 +53,7 @@ function patternMatcher (patternSpec) {
   var getPattern = function (input) {
     var matchedIndex;
     utils.forEach(matchers, function (matcher, index) {
+      console.log(matcher, index);
       if (matcher.test(input)) {
         matchedIndex = index;
         return false;
